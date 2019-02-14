@@ -41,29 +41,32 @@
   </div>
 
   <div [hidden]="!submitted">
-    <h1>Thank you for submitting a request, {{ model.name }}!</h1>
-    <h2>Please sit down at {{ model.table }}. A tutor will be with you shortly.</h2>
-    <h2>Please sit down at {{ model.table }}. Due to the high amount of requests, there may be some delay. We appologize for the inconvience.</h2>
-    <h2>Unfortunately, there are currently no tutors available to tutor your subject. The next tutor will be available at 4:30 p.m.</h2>
-    <h2>Please sit down at {{ model.table }}. A tutor will be with you shortly. Please note that the tutoring center will close at 7 p.m., so have your most important questions ready.</h2>
-    <h3>You submitted the following:</h3>
-    <div class="row">
-      <div class="col-xs-3">Name</div>
-      <div class="col-xs-9">{{ model.name }}</div>
+    <div [@fade]="submitted ? 'opaque' : 'transparent'" class="open-close-container">
+      <h1>Thank you for submitting a request, {{ model.name }}!</h1>
     </div>
-    <div class="row">
-      <div class="col-xs-3">Class</div>
-      <div class="col-xs-9">{{ model.subject }}</div>
+    <div [@longFade]="submitted ? 'opaque' : 'transparent'" class="open-close-container">
+      <h2>Please sit down at {{ model.table }}. A tutor will be with you shortly.</h2>
+      <h3>You submitted the following:</h3>
+      <div class="row">
+        <div class="col-xs-3">Name</div>
+        <div class="col-xs-9">{{ model.name }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Class</div>
+        <div class="col-xs-9">{{ model.subject }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Description</div>
+        <div class="col-xs-9">{{ model.concept }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Table</div>
+        <div class="col-xs-9">{{ model.table }}</div>
+      </div>
+      <br>
+      <button class="btn btn-success" (click)="submitted=false">Done</button>
+      <button class="btn btn-default" (click)="submitted=false">Edit</button>
+      <button class="btn btn-warning" (click)="submitted=false">Unsubmit</button>
     </div>
-    <div class="row">
-      <div class="col-xs-3">Description</div>
-      <div class="col-xs-9">{{ model.concept }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Table</div>
-      <div class="col-xs-9">{{ model.table }}</div>
-    </div>
-    <br>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
   </div>
 </div>

@@ -2,10 +2,43 @@ import { Component } from '@angular/core';
 
 import { TutoringRequest } from '../tutoring-request';
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',
-  styleUrls: ['./request-form.component.css']
+  styleUrls: ['./request-form.component.css'],
+  animations: [
+    trigger('fade', [
+      state('transparent', style({
+        opacity: 0
+      })),
+      state('opaque', style({
+        opacity: 1
+      })),
+      transition('transparent => opaque', [
+        animate('1s')
+      ]),
+    ]),
+    trigger('longFade', [
+      state('transparent', style({
+        opacity: 0
+      })),
+      state('opaque', style({
+        opacity: 1
+      })),
+      transition('transparent => opaque', [
+        animate('0.5s 1500ms')
+      ]),
+    ]),
+  ],
 })
 export class RequestFormComponent {
 
