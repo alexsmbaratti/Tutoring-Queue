@@ -38,6 +38,17 @@ import {
         animate('0.5s 1500ms')
       ]),
     ]),
+    trigger('fadeOut', [
+      state('transparent', style({
+        opacity: 0
+      })),
+      state('opaque', style({
+        opacity: 1
+      })),
+      transition('opaque => transparent', [
+        animate('1s')
+      ]),
+    ])
   ],
 })
 export class RequestFormComponent {
@@ -49,7 +60,23 @@ export class RequestFormComponent {
 
   submitted = false;
 
+  count: number = 15;
+  interval;
+
   onSubmit() {
     this.submitted = true;
+    this.interval = setInterval(() => {
+      if(this.count > 0 && this.submitted) {
+        this.count--;
+      } else {
+        this.count = 16;
+        this.submitted = false;
+        window.location.reload();
+      }
+    },1000)
+  }
+
+  onReset() {
+    window.location.reload();
   }
 }
